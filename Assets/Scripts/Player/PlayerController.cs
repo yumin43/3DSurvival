@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
 
     private Rigidbody _rigidbody;
+    [SerializeField] private InputManager inputManager;
 
     private void Awake() 
     {
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("start함수실행");
         Cursor.lockState = CursorLockMode.Locked;       // 마우스 커서 보이지 않도록
     }
 
@@ -38,7 +40,11 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate() 
     {
-        CameraLook();
+        if (inputManager.settingPanel.activeSelf == false)
+        {
+            CameraLook();
+        }
+        
     }
 
     void Move()
