@@ -12,6 +12,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     Condition health { get { return uiConditions.health; } }
     Condition hunger { get { return uiConditions.hunger; } }
     Condition stamina { get { return uiConditions.stamina; } }
+    Condition mana { get { return uiConditions.mana; } }
 
     public float noHungerHealthDecay;
 
@@ -51,5 +52,15 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     {
         health.Subtract(damage);
         onTakeDamage?.Invoke();
+    }
+
+    public void UseSkill(float amount)
+    {
+        mana.Subtract(amount);
+    }
+
+    public void UseManaItem(float amount)
+    {
+        mana.Add(amount);
     }
 }
